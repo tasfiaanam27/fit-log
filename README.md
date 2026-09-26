@@ -105,7 +105,7 @@ https://api.api-store.workers.dev/api/fitlog/:id
 Clone the repository:
 
 ```bash
-git clone YOUR_REPOSITORY_URL
+git clone https://github.com/tasfiaanam27/fit-log
 ```
 
 Go to the project directory:
