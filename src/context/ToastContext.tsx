@@ -48,7 +48,7 @@ export const ToastProvider = ({
       {visible && (
         <div
           role="status"
-          className="fixed top-6 right-6 z-[9999] flex max-w-[calc(100vw-3rem)] items-center gap-3 rounded-xl border border-[#343a45] bg-[#15181e] px-5 py-4 shadow-2xl"
+          className="fixed top-24 right-6 z-[9999] flex max-w-[calc(100vw-3rem)] items-center gap-3 rounded-xl border border-[#343a45] bg-[#15181e] px-5 py-4 shadow-2xl"
         >
 
           <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#C2F800] text-black">
