@@ -1,9 +1,7 @@
 import { Suspense } from "react";
 
-import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import WorkoutLibrary from "@/components/WorkoutLibrary";
-import Footer from "@/components/Footer";
 
 const LibraryLoading = () => {
   return (
@@ -22,7 +20,6 @@ const LibraryLoading = () => {
 const HomePage = () => {
   return (
     <main className="min-h-screen w-full overflow-x-hidden">
-      <Navbar />
 
       <Hero />
 
@@ -30,7 +27,6 @@ const HomePage = () => {
         <WorkoutLibrary />
       </Suspense>
 
-      <Footer />
     </main>
   );
 };
