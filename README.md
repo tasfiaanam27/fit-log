@@ -177,7 +177,5 @@ src/
 
 ## Responsive Design
 
-The application was built to closely follow the provided Figma design while remaining responsive across different screen sizes.
-
-The workout grid, workout details page, navigation, My Plan page, buttons, and other interface elements adapt for desktop, tablet, and mobile screens.
+The application was built to remain responsive across different screen sizes. The workout grid, workout details page, navigation, My Plan page, buttons, and other interface elements adapt for desktop, tablet, and mobile screens.
 
