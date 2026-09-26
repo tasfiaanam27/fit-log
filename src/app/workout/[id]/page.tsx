@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Workout } from "@/types/workout";
+import WorkoutActions from "@/components/WorkoutActions";
 
 type WorkoutDetailsPageProps = {
   params: Promise<{
@@ -26,15 +27,14 @@ const WorkoutDetailsPage = async ({
   params,
 }: WorkoutDetailsPageProps) => {
   const { id } = await params;
+
   const workout = await getWorkout(id);
 
   return (
-    <main className="min-h-screen bg-[#0b0d10] text-white">
-
+    <main className="bg-[#0b0d10] text-white">
       <section className="mx-auto w-full max-w-[1280px] px-6 py-12">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-[588px_1fr] lg:gap-14">
-          
-          {/* LEFT IMAGE */}
+
           <div className="relative w-full overflow-hidden rounded-2xl lg:h-[735px]">
             <div className="relative aspect-[588/735] w-full lg:h-full">
               <Image
@@ -48,20 +48,16 @@ const WorkoutDetailsPage = async ({
             </div>
           </div>
 
-          {/* RIGHT CONTENT */}
           <div className="flex flex-col">
-            
-            {/* TITLE */}
+
             <h1 className="font-oswald text-[36px] font-bold uppercase leading-[1.15]">
               {workout.name}
             </h1>
 
-            {/* DESCRIPTION */}
             <p className="mt-3 max-w-[570px] font-inter text-[16px] font-normal leading-6 text-[#9297a1]">
               {workout.description}
             </p>
 
-            {/* MUSCLE GROUPS */}
             <div className="mt-5 flex flex-wrap gap-2">
               {workout.muscleGroups.map((group) => (
                 <span
@@ -73,20 +69,37 @@ const WorkoutDetailsPage = async ({
               ))}
             </div>
 
-            {/* INFORMATION TABLE */}
             <div className="mt-7 overflow-hidden rounded-2xl border border-[#252a33] bg-[#15181e]">
-              <DetailRow label="Equipment" value={workout.equipment} />
-              <DetailRow label="Difficulty" value={workout.difficulty} />
-              <DetailRow label="Sets" value={String(workout.sets)} />
-              <DetailRow label="Reps" value={workout.reps} />
+              <DetailRow
+                label="Equipment"
+                value={workout.equipment}
+              />
+
+              <DetailRow
+                label="Difficulty"
+                value={workout.difficulty}
+              />
+
+              <DetailRow
+                label="Sets"
+                value={String(workout.sets)}
+              />
+
+              <DetailRow
+                label="Reps"
+                value={workout.reps}
+              />
+
               <DetailRow
                 label="Duration"
                 value={`${workout.duration} min`}
               />
+
               <DetailRow
                 label="Calories"
                 value={`${workout.caloriesBurned} kcal`}
               />
+
               <DetailRow
                 label="Rating"
                 value={String(workout.rating)}
@@ -94,7 +107,6 @@ const WorkoutDetailsPage = async ({
               />
             </div>
 
-            {/* INSTRUCTIONS */}
             <div className="mt-8">
               <h2 className="font-inter text-[16px] font-extrabold uppercase">
                 Instructions
@@ -116,52 +128,8 @@ const WorkoutDetailsPage = async ({
               </ol>
             </div>
 
-            {/* BUTTONS */}
-            <div className="mt-9 flex flex-wrap gap-4">
-              <button
-                type="button"
-                className="flex h-[44px] items-center gap-2 rounded-xl bg-[#C2F800] px-6 font-inter text-[14px] font-semibold text-black transition hover:bg-[#d0ff28]"
-              >
-                {/* Calendar + icon */}
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.8"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="h-[17px] w-[17px]"
-                  aria-hidden="true"
-                >
-                  <rect x="3" y="5" width="18" height="16" rx="2" />
-                  <path d="M16 3v4M8 3v4M3 10h18" />
-                  <path d="M12 13v5M9.5 15.5h5" />
-                </svg>
+            <WorkoutActions workout={workout} />
 
-                Add to today&apos;s plan
-              </button>
-
-              <button
-                type="button"
-                className="flex h-[44px] items-center gap-2 rounded-xl border border-[#343a45] px-6 font-inter text-[14px] font-medium text-[#e1e3e7] transition hover:border-[#555d69] hover:bg-[#15181e]"
-              >
-                {/* Bookmark */}
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.8"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="h-[17px] w-[17px]"
-                  aria-hidden="true"
-                >
-                  <path d="M6 4.5A1.5 1.5 0 0 1 7.5 3h9A1.5 1.5 0 0 1 18 4.5V21l-6-4-6 4V4.5Z" />
-                </svg>
-
-                Save for later
-              </button>
-            </div>
           </div>
         </div>
       </section>

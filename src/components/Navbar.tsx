@@ -1,18 +1,20 @@
 "use client";
 
+import { useWorkout } from "@/context/WorkoutContext";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
 const Navbar = () => {
+  const { plan, saved } = useWorkout();
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <header className="w-full border-b border-[#1f2228] bg-[#090a0c]">
       <nav className="mx-auto w-full max-w-[1280px] px-4 sm:px-6">
-
         <div className="flex h-20 w-full items-center justify-between gap-2">
 
+          {/* LOGO */}
           <Link
             href="/"
             className="flex shrink-0 items-center gap-2"
@@ -30,6 +32,7 @@ const Navbar = () => {
             </span>
           </Link>
 
+          {/* DESKTOP NAVIGATION */}
           <div className="hidden items-center gap-2 md:flex">
             <Link
               href="/"
@@ -46,8 +49,10 @@ const Navbar = () => {
             </Link>
           </div>
 
+          {/* COUNTERS + MOBILE MENU */}
           <div className="flex min-w-0 items-center gap-2 sm:gap-5">
 
+            {/* PLAN COUNT */}
             <Link
               href="/my-plan"
               className="flex shrink-0 items-center gap-1 text-[11px] font-medium sm:gap-2 sm:text-[12px]"
@@ -57,10 +62,11 @@ const Navbar = () => {
               </span>
 
               <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-[#C2F800] px-1 text-[10px] font-semibold text-black">
-                0
+                {plan.length}
               </span>
             </Link>
 
+            {/* SAVED COUNT */}
             <Link
               href="/my-plan"
               className="flex shrink-0 items-center gap-1 text-[11px] font-medium sm:gap-2 sm:text-[12px]"
@@ -70,10 +76,11 @@ const Navbar = () => {
               </span>
 
               <span className="flex h-5 min-w-5 items-center justify-center rounded-full border border-[#343840] px-1 text-[10px] text-[#b6bac3]">
-                0
+                {saved.length}
               </span>
             </Link>
 
+            {/* MOBILE MENU BUTTON */}
             <button
               type="button"
               onClick={() => setMenuOpen(!menuOpen)}
@@ -87,6 +94,7 @@ const Navbar = () => {
           </div>
         </div>
 
+        {/* MOBILE NAVIGATION */}
         {menuOpen && (
           <div className="border-t border-[#1f2228] pb-4 pt-3 md:hidden">
             <div className="flex flex-col gap-1">
