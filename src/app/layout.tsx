@@ -35,13 +35,18 @@ export default function RootLayout({
         <ToastProvider>
           <WorkoutProvider>
             <div className="flex min-h-screen flex-col">
+
               <Navbar />
+
+              {/* Space for the fixed 80px navbar */}
+              <div className="h-20 shrink-0" />
 
               <div className="flex-1">
                 {children}
               </div>
 
               <Footer />
+
             </div>
           </WorkoutProvider>
         </ToastProvider>

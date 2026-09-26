@@ -10,7 +10,7 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="w-full border-b border-[#1f2228] bg-[#090a0c]">
+    <header className="fixed left-0 right-0 top-0 z-50 w-full border-b border-[#1f2228] bg-[#090a0c]">
       <nav className="mx-auto w-full max-w-[1280px] px-4 sm:px-6">
         <div className="flex h-20 w-full items-center justify-between gap-2">
 
