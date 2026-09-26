@@ -6,7 +6,7 @@ The project was developed based on the provided Figma design and uses workout da
 
 ## Live Website
 
-Live Site: [Add your deployed website link here]
+Live Site: [https://fit-log-umber-six.vercel.app/]
 
 ## Features
 
