@@ -2,12 +2,15 @@
 
 import { Workout } from "@/types/workout";
 import { useWorkout } from "@/context/WorkoutContext";
+import { useToast } from "@/context/ToastContext";
 
 type WorkoutActionsProps = {
   workout: Workout;
 };
 
-const WorkoutActions = ({ workout }: WorkoutActionsProps) => {
+const WorkoutActions = ({
+  workout,
+}: WorkoutActionsProps) => {
   const {
     addToPlan,
     removeFromPlan,
@@ -17,27 +20,34 @@ const WorkoutActions = ({ workout }: WorkoutActionsProps) => {
     isSaved,
   } = useWorkout();
 
+  const { showToast } = useToast();
+
   const addedToPlan = isInPlan(workout.id);
   const savedForLater = isSaved(workout.id);
 
   const handlePlan = () => {
     if (addedToPlan) {
       removeFromPlan(workout.id);
+      showToast("Removed from today's plan");
     } else {
       addToPlan(workout);
+      showToast("Added to today's plan");
     }
   };
 
   const handleSave = () => {
     if (savedForLater) {
       removeSavedWorkout(workout.id);
+      showToast("Removed from saved workouts");
     } else {
       saveWorkout(workout);
+      showToast("Saved for later");
     }
   };
 
   return (
     <div className="mt-9 flex flex-wrap gap-4">
+
       <button
         type="button"
         onClick={handlePlan}
@@ -57,7 +67,14 @@ const WorkoutActions = ({ workout }: WorkoutActionsProps) => {
           className="h-[17px] w-[17px]"
           aria-hidden="true"
         >
-          <rect x="3" y="5" width="18" height="16" rx="2" />
+          <rect
+            x="3"
+            y="5"
+            width="18"
+            height="16"
+            rx="2"
+          />
+
           <path d="M16 3v4M8 3v4M3 10h18" />
 
           {addedToPlan ? (
@@ -67,7 +84,9 @@ const WorkoutActions = ({ workout }: WorkoutActionsProps) => {
           )}
         </svg>
 
-        {addedToPlan ? "Added to today's plan" : "Add to today's plan"}
+        {addedToPlan
+          ? "Added to today's plan"
+          : "Add to today's plan"}
       </button>
 
       <button
@@ -92,7 +111,9 @@ const WorkoutActions = ({ workout }: WorkoutActionsProps) => {
           <path d="M6 4.5A1.5 1.5 0 0 1 7.5 3h9A1.5 1.5 0 0 1 18 4.5V21l-6-4-6 4V4.5Z" />
         </svg>
 
-        {savedForLater ? "Saved" : "Save for later"}
+        {savedForLater
+          ? "Saved"
+          : "Save for later"}
       </button>
     </div>
   );

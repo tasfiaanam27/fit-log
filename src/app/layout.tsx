@@ -5,6 +5,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { WorkoutProvider } from "@/context/WorkoutContext";
+import { ToastProvider } from "@/context/ToastContext";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -31,17 +32,19 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${oswald.variable} bg-[#0b0d10] text-white`}
       >
-        <WorkoutProvider>
-          <div className="flex min-h-screen flex-col">
-            <Navbar />
+        <ToastProvider>
+          <WorkoutProvider>
+            <div className="flex min-h-screen flex-col">
+              <Navbar />
 
-            <div className="flex-1">
-              {children}
+              <div className="flex-1">
+                {children}
+              </div>
+
+              <Footer />
             </div>
-
-            <Footer />
-          </div>
-        </WorkoutProvider>
+          </WorkoutProvider>
+        </ToastProvider>
       </body>
     </html>
   );
